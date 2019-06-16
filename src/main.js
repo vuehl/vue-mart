@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import axios from "axios";
 import "./interceptor";
+import "./cube-ui";
 
 Vue.prototype.$http = axios;
 
