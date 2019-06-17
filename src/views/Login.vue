@@ -84,6 +84,10 @@ export default {
                 localStorage.setItem("token", token);
                 // 保存在 store里面
                 this.$store.commit("setToken", token);
+
+                // 回跳  这个是在登录之后跳转到点击的页面
+                const redirect = this.$route.query.redirect || "/";
+                this.$router.push(redirect);
             } else {
             // 登录失败
                 const toast = this.$createToast({

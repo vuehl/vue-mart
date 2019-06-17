@@ -11,7 +11,7 @@ import {
     // Loading,
     // Tip,
     // Toolbar,
-    // TabBar,
+    TabBar,
     // TabPanels,
     //form
     // Checkbox,
@@ -26,10 +26,10 @@ import {
     // Rate,
     // Validator,
     // Upload,
-    Form
+    Form,
     // // popup
     // Popup,
-    // Toast,
+    Toast,
     // Picker,
     // CascadePicker,
     // DatePicker,
@@ -53,7 +53,7 @@ Vue.use(Button);
 // Vue.use(Loading)
 // Vue.use(Tip)
 // Vue.use(Toolbar)
-// Vue.use(TabBar)
+Vue.use(TabBar)
 // Vue.use(TabPanels)
 // Vue.use(Checkbox)
 // Vue.use(CheckboxGroup)
@@ -69,7 +69,7 @@ Vue.use(Button);
 // Vue.use(Upload)
 Vue.use(Form);
 // Vue.use(Popup)
-// Vue.use(Toast)
+Vue.use(Toast)
 // Vue.use(Picker)
 // Vue.use(CascadePicker)
 // Vue.use(DatePicker)

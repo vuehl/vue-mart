@@ -5,7 +5,7 @@ import router from "./router";
 /* 全局添加拦截器作用是可以在每个api前面就加上headers的token验证 */
 axios.interceptors.request.use(config => {
     /* 判断token是否存在和是否需要token验证的路由 */
-    if (store.state.token && router.meta.auth) {
+    if (store.state.token) {
         config.headers.xToken = "token";
     };
     return config;
