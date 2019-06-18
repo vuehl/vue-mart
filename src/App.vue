@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <transition name="route-move">
+        <transition :name="transitionName">
             <router-view class="child-view" />
         </transition>
         
@@ -23,12 +23,16 @@ export default {
         // 路由发生变化是 tabs同步更新
         $route (route) {
             this.selectLable = route.path;
+
+            // 给动画的名称赋值
+            this.transitionName = this.$router.transitionName;
         }
     },
     data() {
         return {
             token: this.$store.state.token,
             selectLable: "/",
+            transitionName: "route-forward",
             tabs: [{
                 label: "Home",
                 value: "/",
@@ -42,17 +46,17 @@ export default {
                 value: "/login",
                 icon: "cubeic-person"
             }]
-        }
+        };
     },
     methods: {
         async handleLoginout() {
-           const res = await this.$http.post("/api/loginout"); 
+            const res = await this.$http.post("/api/loginout"); 
         },
         changeHandler (val) {
             this.$router.push(val);
         }
     },
-}
+};
 </script>
 
 <style>
@@ -68,16 +72,24 @@ export default {
     }
 
     /* 入场前 */
-    .route-move-enter {
+    .route-forward-enter {
         transform: translate3d(-100%, 0, 0);
     }
-    /* 出场后 */
-    .route-move-leave-to {
+    .route-back-enter {
         transform: translate3d(100%, 0, 0);
     }
+    /* 出场后 */
+    .route-forward-leave-to {
+        transform: translate3d(100%, 0, 0);
+    }
+    .route-back-enter {
+        transform: translate3d(-100%, 0, 0);
+    }
     /* 场内执行 */
-    .route-move-enter-active,
-    .route-move-leave-active {
+    .route-forward-enter-active,
+    .route-forward-leave-active,
+    .route-back-enter-active,
+    .route-back-leave-active {
         transition: transform 0.3;
     }
 

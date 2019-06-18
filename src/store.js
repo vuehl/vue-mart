@@ -19,9 +19,9 @@ const store = new Vuex.Store({
 // 订阅者模式 监听store的变化
 store.subscribe((mutation, state) => {
     switch (mutation.type) {
-        case "setToken":
-            localStorage.setItem("token", JSON.stringify(state.token));
-            break;
+    case "setToken":
+        localStorage.setItem("token", JSON.stringify(state.token));
+        break;
     }
 });
 

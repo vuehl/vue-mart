@@ -3,15 +3,22 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+import KHeader from "./components/Header.vue";
+import notice from "@/services/notice";
 import "./interceptor";
 import "./cube-ui";
 
-Vue.prototype.$http = axios;
+// 全局引入页头 这个样子 在任何地方都可以直接使用了
+Vue.component("k-header", KHeader);
 
+// 全局使用 notice 消息机制
+Vue.prototype.$notice = notice;
+
+Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
 }).$mount("#app");

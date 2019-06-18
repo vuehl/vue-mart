@@ -43,11 +43,8 @@ export default {
                             required: true
                         },
                         props: {
-                            placeholder: '请输入密码',
+                            placeholder: "请输入密码",
                             type: "password"
-                        },
-                        rules: {
-                            required: true
                         },
                         messages: {
                             required: "密码为必填项"
@@ -59,11 +56,11 @@ export default {
                     }
                 ]
             }
-        }
+        };
     },
     methods: {
         handleValidata(ret) {
-           //console.log(ret);
+            //console.log(ret);
         },
         async handleSubmit(e) {
             e.preventDefault();
@@ -73,10 +70,10 @@ export default {
             //     password: this.model.password
             // }})
             // post 方式请求
-             const res = await this.$http.post("/api/login", {
+            const res = await this.$http.post("/api/login", {
                 username: this.model.username,
                 password: this.model.password
-            })
+            });
             const { code, token, messages } = res.data;
             // 判断状态码 如果登录成功
             if (code === "00000000") {
@@ -94,12 +91,12 @@ export default {
                     time: 1000,
                     txt: messages || "用户名或密码错误",
                     type: "error"
-                })
-                toast.show()
+                });
+                toast.show();
             }
         }
     },
-}
+};
 </script>
 
 
