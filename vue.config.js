@@ -60,6 +60,20 @@ module.exports = {
                 });
 
                 app.post("/api/loginout", function(req, res) {
+                    // 如果没有 body-parser post是数据流传输过来的
+                    // let body = [];
+                    // req.on("data", chunk => {
+                    //     // 接受一部分数据
+                    //     console.log(chunk);
+                    //     body.push(chunk);  // chunk 是Buffer对象
+                    // }).on("end", ()=> {
+                    //     // 数据接受完毕
+                    //     // 将body 转化为完整的buffer
+                    //     body = Buffer.concat(body).toString();
+                    //     // 转化保存前台的user
+                    //     const { username, password } = JSON.parse(body);  // {name: "aaa", age: 20}
+                    // });
+
                     res.json({
                         code: "-1",
                         messages: "退出成功"
