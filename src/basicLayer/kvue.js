@@ -9,7 +9,7 @@ class KVue {
         // test
         // new Watcher();
         // console.log('模拟compile', this.$data.test);
-        // 拿到模板的实例 这李new Compile 就是相当于 执行一下里面的代码
+        // 拿到模板的实例 这里new Compile 就是相当于 执行一下里面的代码
         this.$compile = new Compile(options.el, this);
     }
 
@@ -38,9 +38,8 @@ class KVue {
             enumerable: true, // 可枚举
             configurable: true, // 可修改或删除
             get() {
+                // 这个是用来收集Watcher 的视图
                 Dep.target && dep.addDep(Dep.target);
-                console.log(dep.deps);
-                
                 return val;
             },
             set(newVal) {
@@ -48,7 +47,7 @@ class KVue {
                     return;
                 }
                 val = newVal;
-                // console.log('数据发生变化！');
+                // 这个是如果数据发生改变 通知Dep 依赖  然后依赖通知Watcher 进行回调 然后进行视图的更新
                 dep.notify();
             }
         });
@@ -93,16 +92,14 @@ class Watcher {
         // 将来new一个监听器时，将当前Watcher实例附加到Dep.target
         Dep.target = this;
         this.vm[this.key];
-        console.log(this.vm);
-        console.log(this.key);
-        console.log(this.vm[this.key]);
+       
         // 监听完成后 赋值为null 节约内存消耗
         Dep.target = null;
     }
 
     // 更新
     update() {
-        // console.log('视图更新啦！');
+        // 这个更新是 回到new Watcher 去执行更新
         this.cb.call(this.vm, this.vm[this.key]);
     }
 }

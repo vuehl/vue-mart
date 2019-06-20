@@ -123,9 +123,12 @@ class Compile {
 
     // 更新
     update(node, vm, exp, dir) {
+        // 这个更新是初始化视图
         let updaterFn = this[dir + "Updater"];
         updaterFn && updaterFn(node, vm[exp]); // 执行更新，get
+        // 这个是有变化时 更新视图
         new Watcher(vm, exp, function(value) {
+            // 这里接收到 更新函数的调用时 然后执行 进行相应的更改
             updaterFn && updaterFn(node, value);
         });
     }
