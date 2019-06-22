@@ -1,0 +1,33 @@
+﻿//color choose
+npm i react-material-color-picker --save
+
+//Sliding selection
+npm install --save rc-slider
+
+// 可以把層級挂載到父節點上 使用z-index 可以更方便一些
+ReactDOM.createPortal
+
+// 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置
+getBoundingClientRect()
+
+// ReactDOM.findDOMNode()
+this.refs 获得的是虚拟DOM，而ReactDOM.findDOMNode 获得的是实际DOM,可以操作dom上的屬性和實例
+
+//react-split-pane 可以拖動的插件
+npm install react-split-pane --save
+
+//echarts-for-react 封裝后的echarts
+https://github.com/hustcc/echarts-for-react
+
+// grid layout 网格布局
+react-grid-layout 
+
+//控制全屏的插件 是否展開全屏
+npm install --save fscreen
+
+//vue 的privode inject 在任何祖先位置定义了,子孙辈都可以通过 inject 来
+
+//async-validator 可以做element ui 的校验
+
+// vue 滴滴开发的ui 组件 cube ui
+vue add cube-ui

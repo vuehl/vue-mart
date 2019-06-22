@@ -2,13 +2,25 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
+import Cart from "./views/Cart.vue";
 import store from "./store";
+import History from "./utils/history";
 
 Vue.use(Router);
+// 使用我我们自己写的方法
+Vue.use(History);
+
+// 实例化之前，扩展Router
+Router.prototype.goBack = function () {
+    this.isBack = true;
+    // 这个是执行 Header 组件里面的back方法
+    this.back();
+};
+  
 
 const router = new Router({
     mode: "history",
-    //base: process.env.BASE_URL,
+    base: process.env.BASE_URL,
     routes: [
         {
             path: "/",
@@ -19,6 +31,11 @@ const router = new Router({
             path: "/login",
             name: "login",
             component: Login
+        },
+        {
+            path: "/cart",
+            name: "cart",
+            component: Cart
         },
         {
             path: "/about",
@@ -50,6 +67,20 @@ router.beforeEach((to, from, next) => {
     } else {
         // 如果不需要验证 权限的路由 就直接让他过了
         next();
+    }
+});
+
+// 在路由结束之后 添加到_history 数组里面去
+router.afterEach((to, from) => {
+    if(router.isBack) {
+        // 后退
+        History.pop();
+        router.isBack = false;
+        router.transitionName = "route-back";
+    } else {
+        // 把pash() 要写成History.push() 才会生效
+        History.push(to.path);
+        router.transitionName= "route-forward";
     }
 });
 

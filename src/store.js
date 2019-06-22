@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state: {
         token: localStorage.getItem("token") || ""
     },
@@ -15,3 +15,14 @@ export default new Vuex.Store({
     },
     actions: {}
 });
+
+// 订阅者模式 监听store的变化
+store.subscribe((mutation, state) => {
+    switch (mutation.type) {
+    case "setToken":
+        localStorage.setItem("token", JSON.stringify(state.token));
+        break;
+    }
+});
+
+export default store;
