@@ -19,7 +19,7 @@ axios.interceptors.response.use(
         if (response.status == 200) {
             const data = response.data;
             if (data.code == -1) {
-                clearHandler()
+                clearHandler();
             }
         }
         return response;
