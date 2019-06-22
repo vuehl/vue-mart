@@ -59,9 +59,6 @@ module.exports = {
                     }
                 });
 
-<<<<<<< HEAD
-                app.post("/api/logout", function(req, res) {
-=======
                 app.post("/api/loginout", function(req, res) {
                     // 如果没有 body-parser post是数据流传输过来的
                     // let body = [];
@@ -77,7 +74,6 @@ module.exports = {
                     //     const { username, password } = JSON.parse(body);  // {name: "aaa", age: 20}
                     // });
 
->>>>>>> 9cbe1441001fc567a1bc0c6992d6557e36a5da96
                     res.json({
                         code: "-1",
                         messages: "退出成功"
