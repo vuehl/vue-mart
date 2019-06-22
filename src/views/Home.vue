@@ -12,7 +12,7 @@ export default {
         }
     },
     async created () {
-        const res = await this.$http.get("/api/test");
+        const res =await this.$http.get("/api/test");
         console.log(res);
     }
 };

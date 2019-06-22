@@ -59,7 +59,7 @@ module.exports = {
                     }
                 });
 
-                app.post("/api/loginout", function(req, res) {
+                app.post("/api/logout", function(req, res) {
                     res.json({
                         code: "-1",
                         messages: "退出成功"

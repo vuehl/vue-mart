@@ -4,35 +4,40 @@ import router from "./router";
 
 /* 全局添加拦截器作用是可以在每个api前面就加上headers的token验证 */
 axios.interceptors.request.use(config => {
-    /* 判断token是否存在和是否需要token验证的路由 */
-    if (store.state.token && router.meta.auth) {
-        config.headers.xToken = "token";
-    };
+    if (store.state.token) {
+        // 若存在令牌，则放入请求头
+        config.headers.token = store.state.token;
+    }
     return config;
 });
 
-/* 处理退出响应拦截器 */
-axios.interceptors.response.use(response => {
-    if (response.status === 200) {
-        const res = response.data;
-        /* 如果 code 是-1 说明用户注销 或者 或者token已经过期了 */
-        /* 需要消除localStoreage 和 清除vuex的token */
-        if (res.code === -1) {
+// 响应拦截器，提前预处理响应
+axios.interceptors.response.use(
+    response => {
+        // 如果code是-1，说明用户已注销或者token已过期
+        // 此时需要重新登录，并且还要清楚本地缓存信息
+        if (response.status == 200) {
+            const data = response.data;
+            if (data.code == -1) {
+                clearHandler()
+            }
+        }
+        return response;
+    },
+    err => {
+        if (err.response.status === 401) { 
+            /* 未授权 */
             clearHandler();
         }
     }
-    return response;
-}, 
-err=> {
-    /*判断一下未授权 */
-    if(err.response.state === 401) {
-        clearHandler();
-    }
-});
+);
+
 function clearHandler() {
-    localStorage.removeItem("token");
+    // 清空缓存
     store.commit("setToken", "");
-    /* 跳转到登录页面 */
+    localStorage.removeItem("token");
+
+    // 跳转至登录页
     router.push({
         path: "/login",
         query: {
