@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+import echarts from "echarts";
 import KHeader from "./components/Header.vue";
 import notice from "@/services/notice";
 import "./interceptor";
@@ -15,6 +16,7 @@ Vue.component("k-header", KHeader);
 
 // 全局使用 notice 消息机制
 Vue.prototype.$notice = notice;
+Vue.prototype.$echarts = echarts;
 
 // 创建$createNotice API
 //import {createAPI} from "cube-ui";
