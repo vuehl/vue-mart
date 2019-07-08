@@ -2,15 +2,23 @@
     <div class="home">
         <k-header title="你好呀"></k-header>
         {{ home }}
+        {{ persion.serias.judge }}
         <cube-button @click="handleClick">全局测试</cube-button>
     </div>
 </template>
 
 <script>
+let ccc = "this is a home";
+let judge = "this is a judge";
 export default {
     data() {
         return {
-            home: "this is a home page"
+            home: ccc,
+            persion: {
+                serias: {
+                    judge: judge
+                }
+            }
         };
     },
     methods: {
