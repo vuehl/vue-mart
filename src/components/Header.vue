@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <h1>{{title}}</h1>
-        <i v-if="$routerHistory.canBack()" @click="back" class="cubeic-back"></i>
+        <i v-if="$routerHistory.canBack()" @click="goback" class="cubeic-back"></i>
         <div class="extend">
             <slot></slot>
         </div>
@@ -17,7 +17,7 @@ export default {
         }
     },
     methods: {
-        back() {
+        goback() {
             this.$router.goBack();
         }
     }

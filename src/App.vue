@@ -54,6 +54,7 @@ export default {
             const res = await this.$http.post("/api/loginout"); 
         },
         changeHandler (val) {
+            console.log(val);
             this.$router.push(val);
         }
     },

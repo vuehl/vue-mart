@@ -13,7 +13,8 @@ Vue.use(History);
 // 实例化之前，扩展Router
 Router.prototype.goBack = function () {
     this.isBack = true;
-    // 这个是执行 Header 组件里面的back方法
+    
+    // 这个是Router自带的back回退方法
     this.back();
 };
   
